@@ -1,25 +1,25 @@
 # 📊 Aprendizaje Estadístico
-# ACTUALIZAR README EN BASE AL NUEVO CASO, ESTÁ IGUAL AL CASO 1
+
 [![Python](https://img.shields.io/badge/Python-3.10-3776AB?style=for-the-badge&logo=python&logoColor=white)]()
 [![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626?style=for-the-badge&logo=jupyter&logoColor=white)]()
 [![Pandas](https://img.shields.io/badge/Pandas-Análisis%20de%20Datos-150458?style=for-the-badge&logo=pandas&logoColor=white)]()
+[![SciPy](https://img.shields.io/badge/SciPy-Pruebas%20de%20Hipótesis-8CAAE6?style=for-the-badge&logo=scipy&logoColor=white)]()
 [![Git](https://img.shields.io/badge/Git-Control%20de%20Versiones-F05032?style=for-the-badge&logo=git&logoColor=white)]()
 [![License](https://img.shields.io/badge/Licencia-MIT-black?style=for-the-badge)]()
 
 ## Sesión 3: Pruebas de hipótesis
 
-
 ## 📌 Descripción General
 
-Este repositorio contiene el desarrollo del caso de estudio de la Sesión 1, centrado en el **análisis descriptivo de datos** aplicado a un escenario real de negocio: la operación de última milla de una empresa ficticia de entregas, **RutaExpress**.
+Este repositorio contiene el desarrollo del caso de estudio de la Sesión 3, centrado en **pruebas de hipótesis** aplicadas a un escenario real de negocio: la decisión de escalar a nivel nacional el programa piloto **"Consulta Prioritaria Vitalcol" (CPV)** de **Vitalcol EPS**, una entidad promotora de salud ficticia que opera en Bogotá, Medellín, Cali y Barranquilla.
 
-A partir de un conjunto de datos simulado de 1,500 envíos, se desarrollaron análisis orientados a responder preguntas concretas del negocio, tales como:
+A partir de tres conjuntos de datos simulados, se desarrollaron análisis estadísticos rigurosos orientados a responder preguntas concretas de distintas áreas de la organización, tales como:
 
-- ¿Vale la pena invertir en expandir la flota de drones más allá del piloto actual?
-- ¿Qué zona de la ciudad requiere una intervención operativa prioritaria?
-- ¿Qué meta de tiempo de entrega (SLA) es razonable comunicar públicamente a los clientes?
+- ¿El programa CPV incrementó el costo promedio por consulta prioritaria frente a las clínicas control?
+- ¿Alguna de las tres modalidades de triage digital evaluadas reduce el tiempo de atención y las complicaciones evitables frente a las demás?
+- ¿El programa de capacitación en triage digital mejoró el desempeño del personal de enfermería, lo suficiente como para hacerlo obligatorio a nivel nacional?
 
-El trabajo se desarrolló íntegramente en un **Jupyter Notebook**, combinando código, salidas (numéricas y gráficas) y celdas de interpretación redactadas en lenguaje de negocio.
+El trabajo se desarrolló íntegramente en un **Jupyter Notebook**, combinando código, salidas (numéricas y gráficas) y celdas de interpretación redactadas en lenguaje de negocio, siguiendo en cada ejercicio el procedimiento de 5 pasos de una prueba de hipótesis: planteamiento, formulación de H₀/H₁, selección de la prueba, análisis exploratorio, ejecución, y conclusión de negocio.
 
 ------------------------------------------------------------------------
 
@@ -32,43 +32,42 @@ El trabajo se desarrolló íntegramente en un **Jupyter Notebook**, combinando c
 
 ## 🧠 Estructura del Análisis (Notebook)
 
-### Parte A — Conceptos y tipos de variable
-Clasificación de cada variable del dataset (numérica continua/discreta, categórica nominal/ordinal) y análisis del error de interpretación al codificar `nivel_servicio` como número y promediarlo.
+### Ejercicio 1 — Costos operativos del programa CPV
+Comparación del costo promedio por consulta prioritaria entre clínicas piloto (con CPV) y clínicas control (sin CPV), mediante una prueba t de dos muestras independientes (dos colas). Se evalúa si una eventual diferencia es no solo estadísticamente significativa, sino también relevante en términos financieros para el Comité Financiero.
 
-### Parte B — Medidas de tendencia central
-Cálculo de media, mediana y moda de `tiempo_entrega_min`; definición de un valor de SLA recomendado para comunicación pública; y comparación de la mediana del tiempo de entrega por tipo de vehículo, con recomendación operativa sobre la flota.
+### Ejercicio 2 — Comparación de modalidades de triage digital
+Evaluación de tres modalidades de triage digital (síntomas auto-reportados, + signos vitales, + priorización por IA) desde dos ángulos independientes:
+- **Parte A:** comparación del tiempo hasta la primera atención entre las tres modalidades mediante ANOVA de un factor.
+- **Parte B:** prueba de independencia (Chi-cuadrado) entre el tipo de modalidad y la ocurrencia de complicaciones evitables, mediante tabla de contingencia.
 
-### Parte C — Medidas de dispersión
-Cálculo de desviación estándar y coeficiente de variación del tiempo de entrega, tanto de forma global como por zona; y análisis del coeficiente de variación del costo de envío por nivel de servicio, evaluando la viabilidad de una tarifa fija garantizada.
-
-### Parte D — Medidas de sesgo y curtosis
-Cálculo del sesgo y la curtosis de `tiempo_entrega_min` con `scipy.stats`, interpretando la asimetría positiva de la distribución (cola hacia la derecha) y sus implicaciones para un futuro modelo predictivo, así como para el diseño de una política de compensación por retrasos extremos.
-
-### Parte E — Visualización de datos
-Construcción de un histograma de `tiempo_entrega_min` con líneas de media y mediana, relacionando la forma de la distribución con el sesgo calculado; y comparación mediante gráficos de densidad (KDE) del tiempo de entrega entre zonas.
-
-### Parte F — Síntesis y decisión gerencial
-Memo ejecutivo dirigido al Director de Operaciones, con recomendaciones sustentadas en las medidas descriptivas calculadas, y reconocimiento de las limitaciones del análisis.
+### Ejercicio 3 — Evaluación del programa de capacitación en triage
+Análisis de diseño abierto sobre la mejora en el desempeño del personal de enfermería (evaluación de competencias antes/después de una capacitación), incluyendo:
+- Justificación de muestras pareadas.
+- Evaluación visual del supuesto de normalidad sobre la diferencia de puntajes.
+- Ejecución y comparación de una prueba paramétrica (t pareada) y su alternativa no paramétrica (Wilcoxon).
+- Recomendación final a Recursos Humanos sobre la obligatoriedad del programa a nivel nacional.
 
 ------------------------------------------------------------------------
 
 ## 📁 Estructura del Proyecto
 
-    📦 Sesion_1_Aprendizaje_Estadistico_Analisis_Descriptivo
+    📦 Sesion_3_Pruebas_de_hipotesis
      ├── README.md
-     ├── Sanchez_Jeisson_y_Bogota_Juan_CasoEstudio_sesion1.ipynb
-     ├── Sesión_1_Aprendizaje_Estadístico_Analisis_Descriptivo.ipynb 
-     └── Sesion1_Caso_Estudio_RutaExpress.pdf
+     ├── Sanchez_Jeisson_y_Bogota_Juan_CasoEstudio_sesion3.ipynb
+     ├── Sesión_2_ Análisis_Descriptivo_Multivariado.ipynb
+     ├── Sesión_3_Pruebas_de_hipótesis.ipynb
+     └── Sesion3_Caso_Estudio_Vitalcol.pdf
 
 ### 📖 Contenido
 
 - **Desarrollo del taller** en Jupyter Notebook (Google Colab / VS Code):
-  `Sanchez_Jeisson_y_Bogota_Juan_CasoEstudio_sesion1.ipynb`
-- **Recurso de la Sesión 1** (introducción al análisis descriptivo):
-  `Sesión_1_Aprendizaje_Estadístico_Analisis_Descriptivo.ipynb`
--  **Recurso de la Sesión 1** (introducción al análisis descriptivo):
-  `Sesión_1_Aprendizaje_Estadístico_Analisis_Descriptivo.ipynb`
-
+  `Sanchez_Jeisson_y_Bogota_Juan_CasoEstudio_sesion3.ipynb`
+- **Recurso de la Sesión 2** (Analisis descriptivo multivariado):
+`Sesión_2_ Análisis_Descriptivo_Multivariado.ipynb`
+- **Recurso de la Sesión 3** (introducción a las pruebas de hipótesis, caso guía Vitalcol):
+  `Sesión_3_Pruebas_de_hipótesis.ipynb`
+- **Enunciado del caso de estudio** (Tarea 3 — Pruebas de Hipótesis):
+  `Sesion3_Caso_Estudio_Vitalcol.pdf`
 
 ------------------------------------------------------------------------
 
@@ -76,7 +75,8 @@ Memo ejecutivo dirigido al Director de Operaciones, con recomendaciones sustenta
 
 - Python
 - Pandas / NumPy
-- SciPy (sesgo y curtosis)
+- SciPy (`scipy.stats`: t de Student, ANOVA, Chi-cuadrado, Wilcoxon)
+- Statsmodels (pruebas complementarias y salidas formales)
 - Matplotlib / Seaborn (visualización)
 - Jupyter Notebook / Google Colab / VS Code
 - Git y GitHub
@@ -87,13 +87,14 @@ Memo ejecutivo dirigido al Director de Operaciones, con recomendaciones sustenta
 
 A través de este taller se desarrollaron las siguientes competencias:
 
-- Clasificación correcta de variables numéricas y categóricas, y comprensión de los errores comunes al codificar variables ordinales como numéricas.
-- Selección crítica de medidas de tendencia central según la presencia de valores atípicos.
-- Interpretación del coeficiente de variación como herramienta para comparar la dispersión relativa entre grupos.
-- Identificación de sesgo y curtosis en distribuciones reales, y su implicación en la toma de decisiones de negocio.
-- Construcción de visualizaciones que respaldan el análisis estadístico.
+- Formulación formal de hipótesis estadísticas (H₀ y H₁) a partir de preguntas de negocio ambiguas, incluyendo la distinción entre pruebas de una y dos colas.
+- Selección crítica de la prueba estadística adecuada según el tipo de variable, el número de grupos, y si las muestras son independientes o pareadas.
+- Evaluación del supuesto de normalidad mediante inspección visual (histogramas, boxplots) y razonamiento sobre el tamaño de muestra, en lugar de depender únicamente de pruebas formales.
+- Comparación entre pruebas paramétricas y no paramétricas (t vs. Wilcoxon), y análisis de cuándo su elección cambia (o no) la conclusión de negocio.
+- Distinción entre significancia estadística y relevancia práctica de un resultado.
+- Identificación de limitaciones metodológicas (ausencia de grupo control, sesgo de selección, correlación vs. causalidad) antes de tomar decisiones basadas en los resultados.
 - Redacción de conclusiones orientadas a un público de negocio, no técnico.
-- Trabajo colaborativo mediante Git y GitHub.
+- Trabajo colaborativo mediante Git y GitHub, incluyendo la resolución de conflictos de merge.
 
 ------------------------------------------------------------------------
 
@@ -101,6 +102,3 @@ A través de este taller se desarrollaron las siguientes competencias:
 
 [![GitHub](https://img.shields.io/badge/GitHub-JeissonS02-181717?style=for-the-badge&logo=github)](https://github.com/JeissonS02)
 [![GitHub](https://img.shields.io/badge/GitHub-JuanBogota-181717?style=for-the-badge&logo=github)](https://github.com/JuanBogota)
-
-
-
